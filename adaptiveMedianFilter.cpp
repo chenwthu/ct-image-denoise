@@ -1,8 +1,9 @@
 #include "mex.h"
+#include "matrix.h"
 #include <vector>
 #include <algorithm>
 
-inline int at(int i, int j, int m, int n) {
+inline mwIndex at(int i, int j, int m, int n) {
     if (i < 0) i = - i - 1;
     if (i >= m) i = m * 2 - i - 1;
     if (j < 0) j = - j - 1;
@@ -12,7 +13,7 @@ inline int at(int i, int j, int m, int n) {
 
 void mexFunction(int nlhs, mxArray **plhs, int nrhs, const mxArray **prhs) {
     double *I = (double *)mxGetPr(prhs[0]);
-    int m = mxGetM(prhs[0]), n = mxGetN(prhs[0]);
+    mwSize m = mxGetM(prhs[0]), n = mxGetN(prhs[0]);
 
     nlhs = 1;
     plhs[0] = mxCreateDoubleMatrix(m, n, mxREAL);
